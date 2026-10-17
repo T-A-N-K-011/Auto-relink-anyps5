@@ -1,5 +1,3 @@
-
-
 # Relinker Runner
 
 A single double-click `.bat` file that converts a game's `eboot.bin.esbak` into a Windows executable (`app.exe`) using `relinker`.
@@ -20,7 +18,7 @@ Copy-Item ".\source\eboot.bin.esbak" ".\source\input.elf"
 
 ## ⚠️ Legal notice
 
-**You must legally own the game🏴‍☠️.** This project does not include, distribute, or help you obtain any game files. Use it only with a copy of a game that you personally own. You are responsible for complying with the laws in your country and with the license terms of the game and of any tools you use.
+**You must legally own the game.** This project does not include, distribute, or help you obtain any game files. Use it only with a copy of a game that you personally own. You are responsible for complying with the laws in your country and with the license terms of the game and of any tools you use.
 
 ---
 
@@ -33,6 +31,10 @@ You **must** download all of the following:
 3. **relinker**: [relinker-v0.1.2.exe](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe)
 4. **A game you own**, in **exFAT** format.
 5. **Windows**.
+
+## 🎬 Video Tutorial
+
+Watch the full tutorial for this tool here: **https://gofile.io/d/kVDY6oyP**
 
 ## Setup
 
