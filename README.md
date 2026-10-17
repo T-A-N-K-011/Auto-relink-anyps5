@@ -24,13 +24,16 @@ Copy-Item ".\source\eboot.bin.esbak" ".\source\input.elf"
 
 ## Requirements
 
-You **must** download all of the following:
+You **must** download these:
 
-1. **exFAT Image Builder**: https://github.com/kerrdec97/ps5-exfat-builder
-2. **AnyPS5 PRX package (Windows)**: [prx-windows-v0.1.2.zip](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/prx-windows-v0.1.2.zip) (release page: https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.2)
-3. **relinker**: [relinker-v0.1.2.exe](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe)
-4. **A game you own**, in **exFAT** format.
-5. **Windows**.
+1. **AnyPS5 PRX package (Windows)**: [prx-windows-v0.1.2.zip](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/prx-windows-v0.1.2.zip) (release page: https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.2)
+2. **relinker**: [relinker-v0.1.2.exe](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe)
+3. **A game you own.**
+4. **Windows**.
+
+Recommended (not required):
+
+- **exFAT format + exFAT Image Builder**: https://github.com/kerrdec97/ps5-exfat-builder. Using an exFAT game image extracted with this tool is the **preferred** way. If you don't have the game as exFAT, you can use the game files normally (see Setup, Step 1, Option B).
 
 ## 🎬 Video Tutorial
 
@@ -38,26 +41,35 @@ Watch the full tutorial for this tool here: **https://gofile.io/d/kVDY6oyP**
 
 ## Setup
 
-### Step 1: Extract the game with exFAT Image Builder
+### Step 1: Get the game files into a `source` folder
+
+**Option A (recommended): exFAT + exFAT Image Builder**
 
 1. Open **exFAT Image Builder**.
 2. Go to the **Extract** tab.
 3. Select your game's **exFAT image** and **extract** it.
-4. Extract the output **into a folder named `source`** (create it first if needed). When it finishes, `source` should contain the game files, including `eboot.bin.esbak`.
+4. Extract the output **into a folder named `source`** (create it first if needed).
+
+**Option B: regular game files (exFAT is not required)**
+
+1. Create a folder named **`source`**.
+2. Put your game files directly inside it.
+
+Either way, when you're done `source` should contain the game files, including `eboot.bin.esbak` (or `eboot.bin`).
 
 ### Step 2: Download the AnyPS5 PRX package
 
-5. Download [`prx-windows-v0.1.2.zip`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/prx-windows-v0.1.2.zip) and **extract it next to the `source` folder** (same parent folder, not inside `source`).
+1. Download [`prx-windows-v0.1.2.zip`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/prx-windows-v0.1.2.zip) and **extract it next to the `source` folder** (same parent folder, not inside `source`).
 
 ### Step 3: Create `app0`
 
-6. Create a new folder named **`app0`** next to the `source` folder.
-7. **Copy** (don't move) everything that is inside `source` into `app0`.
+1. Create a new folder named **`app0`** next to the `source` folder.
+2. **Copy** (don't move) everything that is inside `source` into `app0`.
 
 ### Step 4: Add relinker and the runner
 
-8. Download [`relinker-v0.1.2.exe`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe) and put it next to the `source` folder.
-9. Put `relink.bat` next to the `source` folder as well.
+1. Download [`relinker-v0.1.2.exe`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe) and put it next to the `source` folder.
+2. Put `relink.bat` next to the `source` folder as well.
 
 ## 🎮 Game Testing / Compatibility
 
@@ -126,7 +138,7 @@ relink.bat "D:\Games\MyGame"
 | Problem | Fix |
 |---|---|
 | `No "source" folder found` | Put `relink.bat` in the folder that *contains* `source`, not inside `source`. |
-| `Neither eboot.bin.esbak nor eboot.bin was found` | Re-check that you used the **Extract** tab in exFAT Image Builder and extracted the image *into* the `source` folder. |
+| `Neither eboot.bin.esbak nor eboot.bin was found` | Make sure the game files are *directly* inside the `source` folder (not in a sub-folder). If you use exFAT, re-check that you used the **Extract** tab in exFAT Image Builder. |
 | `relinker-v0.1.2.exe was not found` | Download it from the Requirements section and put it next to the `source` folder. |
 | Missing PRX files / `app0` problems | Re-check Setup: the zip must be extracted next to `source`, and `app0` must contain a copy of the files from `source`. |
 
