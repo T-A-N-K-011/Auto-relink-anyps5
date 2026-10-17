@@ -70,6 +70,21 @@ Results from testing games with this tool. Only games the tester legally owns sh
 
 **Status legend:** ✅ Works · ⚠️ Partial (runs with problems) · ❌ Doesn't work
 
+### Screenshots
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="screenshots/dreaming-sarah.png" alt="Dreaming Sarah running" width="100%"><br>
+      <b>Dreaming Sarah</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="screenshots/the-king-is-watching.png" alt="The King is Watching running" width="100%"><br>
+      <b>The King is Watching</b>
+    </td>
+  </tr>
+</table>
+
 ### Tested a game?
 [Open a game test report](../../issues/new?template=game-test-report.md) and include the game name, version, result, and the text from the `relink.bat` window. Confirmed results get added to the table above.
 
