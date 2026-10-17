@@ -86,17 +86,18 @@ relink.bat "D:\Games\MyGame"
 
 1. Checks that the folder exists.
 2. Looks for a `source` folder. If it is missing, it shows an error and stops.
-3. Checks that `source\eboot.bin.esbak` and `relinker-v0.1.2.exe` exist.
-4. Copies `source\eboot.bin.esbak` to `source\input.elf`.
-5. Runs `relinker-v0.1.2.exe --windows source\input.elf app.exe`.
-6. `app.exe` is created in the same folder.
+3. Looks for `source\eboot.bin.esbak`. If it's missing, it looks for `source\eboot.bin` instead. If neither exists, it shows an error and stops.
+4. Checks that `relinker-v0.1.2.exe` exists.
+5. Copies the file it found (`eboot.bin.esbak` or `eboot.bin`) to `source\input.elf`.
+6. Runs `relinker-v0.1.2.exe --windows source\input.elf app.exe`.
+7. `app.exe` is created in the same folder.
 
 ## Troubleshooting
 
 | Problem | Fix |
 |---|---|
 | `No "source" folder found` | Put `relink.bat` in the folder that *contains* `source`, not inside `source`. |
-| `eboot.bin.esbak was not found` | Re-check that you used the **Extract** tab in exFAT Image Builder and extracted the image *into* the `source` folder. |
+| `Neither eboot.bin.esbak nor eboot.bin was found` | Re-check that you used the **Extract** tab in exFAT Image Builder and extracted the image *into* the `source` folder. |
 | `relinker-v0.1.2.exe was not found` | Download it from the Requirements section and put it next to the `source` folder. |
 | Missing PRX files / `app0` problems | Re-check Setup: the zip must be extracted next to `source`, and `app0` must contain a copy of the files from `source`. |
 
