@@ -30,6 +30,7 @@ You **must** download these:
 2. **relinker**: [relinker-v0.1.2.exe](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe)
 3. **A game you own.**
 4. **Windows**.
+5. **Python 3 + `unwrap_self.py`** (only needed when your game has `eboot.bin` but no `eboot.bin.esbak`, see below).
 
 Recommended (not required):
 
@@ -71,6 +72,27 @@ Either way, when you're done `source` should contain the game files, including `
 1. Download [`relinker-v0.1.2.exe`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe) and put it next to the `source` folder.
 2. Put `relink.bat` next to the `source` folder as well.
 
+## Unwrapping `eboot.bin` (SELF → ELF)
+
+`relinker` needs a plain **ELF**. If your game has `eboot.bin.esbak`, that file is already an ELF and nothing else is needed.
+
+If there is **no** `eboot.bin.esbak`, `eboot.bin` is usually a **SELF container**, and relinker stops with:
+
+```
+FAIL: The input is a SELF container, not an ELF
+```
+
+To fix it:
+
+1. Install **Python 3** (https://www.python.org/downloads/ ; tick *Add python.exe to PATH*).
+2. Get `unwrap_self.py` from the `tools` folder of the AnyPS5 repo: https://github.com/boykopovar/AnyPS5 and put it in a folder named `tools` next to `source`.
+3. Run `relink.bat` again. It runs `unwrap_self.py source\eboot.bin source\input.elf` for you before calling relinker.
+
+Notes (from the [AnyPS5 usage guide](https://github.com/boykopovar/AnyPS5/blob/main/docs/user/USAGE.md)):
+
+- The unwrap only works on **already-decrypted** containers. It refuses containers whose segments are encrypted.
+- Other bundled modules (`.prx` files in `sce_module/` or `prx/`) that are SELF containers are **skipped with a warning** ("Skipping SELF container ..."). That warning is not what makes relinker fail, but if you want them included they must be unwrapped too. See the usage guide.
+
 ## 🎮 Game Testing / Compatibility
 
 Results from testing games with this tool. Only games the tester legally owns should be reported.
@@ -109,6 +131,8 @@ MyGame/
 ├── app0/
 │   └── ...                      (a copy of everything inside source)
 ├── (extracted contents of prx-windows-v0.1.2.zip)
+├── tools/
+│   └── unwrap_self.py           (only needed if there is no eboot.bin.esbak)
 ├── relinker-v0.1.2.exe
 └── relink.bat
 ```
@@ -129,7 +153,9 @@ relink.bat "D:\Games\MyGame"
 2. Looks for a `source` folder. If it is missing, it shows an error and stops.
 3. Looks for `source\eboot.bin.esbak`. If it's missing, it looks for `source\eboot.bin` instead. If neither exists, it shows an error and stops.
 4. Checks that `relinker-v0.1.2.exe` exists.
-5. Copies the file it found (`eboot.bin.esbak` or `eboot.bin`) to `source\input.elf`.
+5. Creates `source\input.elf`:
+   - from `eboot.bin.esbak`: a plain copy.
+   - from `eboot.bin`: unwraps it with `tools\unwrap_self.py` (needs Python); if the tool or Python is missing, or the unwrap fails, it falls back to a plain copy.
 6. Runs `relinker-v0.1.2.exe --windows source\input.elf app.exe`.
 7. `app.exe` is created in the same folder.
 
@@ -139,6 +165,7 @@ relink.bat "D:\Games\MyGame"
 |---|---|
 | `No "source" folder found` | Put `relink.bat` in the folder that *contains* `source`, not inside `source`. |
 | `Neither eboot.bin.esbak nor eboot.bin was found` | Make sure the game files are *directly* inside the `source` folder (not in a sub-folder). If you use exFAT, re-check that you used the **Extract** tab in exFAT Image Builder. |
+| `FAIL: The input is a SELF container, not an ELF` | `eboot.bin` must be unwrapped first. See [Unwrapping `eboot.bin`](#unwrapping-ebootbin-self--elf). Needs Python 3 and `tools\unwrap_self.py`. |
 | `relinker-v0.1.2.exe was not found` | Download it from the Requirements section and put it next to the `source` folder. |
 | Missing PRX files / `app0` problems | Re-check Setup: the zip must be extracted next to `source`, and `app0` must contain a copy of the files from `source`. |
 
