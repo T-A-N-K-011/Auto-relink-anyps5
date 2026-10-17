@@ -59,6 +59,20 @@ Watch the full tutorial for this tool here: **https://gofile.io/d/kVDY6oyP**
 8. Download [`relinker-v0.1.2.exe`](https://github.com/boykopovar/AnyPS5/releases/download/v0.1.2/relinker-v0.1.2.exe) and put it next to the `source` folder.
 9. Put `relink.bat` next to the `source` folder as well.
 
+## 🎮 Game Testing / Compatibility
+
+Results from testing games with this tool. Only games the tester legally owns should be reported.
+
+| Game | Version | Status | Notes | Tested by |
+|---|---|---|---|---|
+| Dreaming Sarah | - | ✅ Works | Tested by the author with `relink.bat` | Maintainer |
+| The King is Watching | - | ✅ Works | Tested by the author with `relink.bat` | Maintainer |
+
+**Status legend:** ✅ Works · ⚠️ Partial (runs with problems) · ❌ Doesn't work
+
+### Tested a game?
+[Open a game test report](../../issues/new?template=game-test-report.md) and include the game name, version, result, and the text from the `relink.bat` window. Confirmed results get added to the table above.
+
 ## Expected folder layout
 
 ```
