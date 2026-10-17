@@ -14,14 +14,6 @@ Copy-Item ".\source\eboot.bin.esbak" ".\source\input.elf"
 
 (The `.bat` uses the equivalent `copy` command, so no PowerShell or execution-policy setup is needed.)
 
----
-
-## ⚠️ Legal notice
-
-**You must legally own the game.** This project does not include, distribute, or help you obtain any game files. Use it only with a copy of a game that you personally own. You are responsible for complying with the laws in your country and with the license terms of the game and of any tools you use.
-
----
-
 ## Requirements
 
 You **must** download these:
